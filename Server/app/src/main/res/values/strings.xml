@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">SKM Coffee</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Tìm kiếm...</string>
+    <string name="ava_string">Ảnh đại diện</string>
+    <string name="FullName">Họ và tên</string>
+    <string name="FullNameFill">Nguyễn Văn A</string>
+    <string name="Password">Mật khẩu-123456</string>
+    <string name="PasswordFill">*******</string>
+    <string name="Address">Địa chỉ</string>
+    <string name="AddressFill">123 Ngũ Hành Sơn</string>
+    <string name="NumberPhone">Số điện thoại</string>
+    <string name="NumberPhoneFill">0123456789</string>
+    <string name="PleaseFill">Vui lòng điền thông tin!</string>
+    <string name="AddEmployee">Thêm nhân viên</string>
+    <string name="Obligatory">Bắt buộc</string>
+    <string name="chi_tiet">Chi tiết</string>
+    <string name="san_pham">Sản phẩm</string>
+
+    <string name="yeu_cau_nhap_mat_khau">Vui lòng nhập mật khẩu của người quản lý!</string>
+    <string name="nhap_mat_khau">Nhập mật khẩu</string>
+    <string name="dang_nhap">Đăng nhập</string>
+    <string name="ngay">Ngày</string>
+    <string name="tim_kiem">Tìm kiếm…</string>
+    <string name="LinkProduct">Link sản phẩm</string>
+    <string name="NameProduct">Tên sản phẩm</string>
+    <string name="PriceProduct">Giá sản phẩm</string>
+    <string name="Add">Thêm</string>
+    <string name="Cancel">Hủy</string>
+    <string name="Load">Load</string>
+    <string name="ExampleName">Nguyễn Văn A</string>
+    <string name="ExampleNumberPhone">0123456789</string>
+    <string name="ExampleAddress">123 Ngũ Hành Sơn, Đà Nẵng</string>
+    <string name="qlnv">Quản lý nhân viên</string>
+    <string name="ttnv">Thông tin nhân viên</string>
+    <string name="tnv">Thêm nhân viên</string>
+    <string name="tkdt">Thống kê doanh thu</string>
+    <string name="name_null">Họ và tên không được để trống</string>
+    <string name="valid_success">Xác thực thành công</string>
+    <string name="numberPhone_null">Số điện thoại không thể trống</string>
+    <string name="numberPhone_length">Số điện thoại không đúng quy định</string>
+    <string name="address_null">Địa chỉ không được để trống</string>
+    <string name="link_null">Link sản phẩm trống</string>
+    <string name="nameProduct_null">Tên sản phẩm không được để trống</string>
+    <string name="price_null">Tên sản phẩm không được để trống</string>
+    <string name="link_error">Link sản phẩm không đúng</string>
+    <string name="age">Tuổi</string>
+    <string name="mkkd">Mật khẩu không đúng</string>
+    <string name="mk">Mật khẩu</string>
+    <string name="save">Save</string>
+    <string name="menu">Menu</string>
+    <string name="table">Bàn</string>
+    <string name="table_name">1</string>
+    <string name="tableName">Table</string>
+
+    <string-array name="filter">
+        <item>Ngày</item>
+        <item>Tổng tiền</item>
+    </string-array>
+    <string-array name="action">
+        <item>Nhân viên</item>
+        <item>Hóa đơn</item>
+        <item>Bàn</item>
+        <item>Menu</item>
+        <item>Đăng xuất</item>
+    </string-array>
+</resources>

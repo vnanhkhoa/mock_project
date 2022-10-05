@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.mksk.server.ui.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeManagerFragment"
+        android:label="@string/qlnv"
+        android:name="com.mksk.server.ui.employee.EmployeeManagerFragment"
+        tools:layout="@layout/fragment_employee_manager" >
+        <action
+            android:id="@+id/action_employeeManagerFragment_to_employeeInfoFragment"
+            app:destination="@id/employeeInfoFragment" />
+        <action
+            android:id="@+id/action_employeeManagerFragment_to_employeeAddFragment"
+            app:destination="@id/employeeAddFragment" />
+    </fragment>
+    <fragment
+        android:label="@string/ttnv"
+        android:id="@+id/employeeInfoFragment"
+        android:name="com.mksk.server.ui.employee.info.EmployeeInfoFragment"
+        tools:layout="@layout/fragment_employee_info" >
+        <argument
+            android:name="employee"
+            app:argType="com.mksk.server.data.models.Employee" />
+    </fragment>
+    <fragment
+        android:label="@string/tnv"
+        android:id="@+id/employeeAddFragment"
+        android:name="com.mksk.server.ui.employee.add.EmployeeAddFragment"
+        tools:layout="@layout/fragment_employee_add" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.mksk.server.ui.login.LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_mainManagerFragment"
+            app:destination="@id/mainManagerFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.mksk.server.ui.menu.MenuFragment"
+        android:label="@string/menu"
+        tools:layout="@layout/fragment_menu"
+        />
+    <fragment
+        android:id="@+id/mainManagerFragment"
+        android:name="com.mksk.server.ui.mainserver.MainManagerFragment"
+        tools:layout="@layout/fragment_main_manager" >
+        <action
+            android:id="@+id/action_mainManagerFragment_to_employeeManagerFragment"
+            app:destination="@id/employeeManagerFragment" />
+        <action
+            android:id="@+id/action_mainManagerFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_mainManagerFragment_to_revenueFragment"
+            app:destination="@id/revenueFragment" />
+        <action
+            android:id="@+id/action_mainManagerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainManagerFragment_to_tableFragment"
+            app:destination="@id/tableFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/revenueFragment"
+        android:name="com.mksk.server.ui.revenue.RevenueFragment"
+        android:label="@string/tkdt"
+        tools:layout="@layout/fragment_revenue" >
+        <action
+            android:id="@+id/action_revenueFragment_to_revenueDetailFragment"
+            app:destination="@id/revenueDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/revenueDetailFragment"
+        android:name="com.mksk.server.ui.revenuedetail.RevenueDetailFragment"
+        android:label="{date}"
+        tools:layout="@layout/fragment_revenue_detail" >
+        <argument
+            android:name="date"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/tableFragment"
+        android:name="com.mksk.server.ui.table.TableFragment"
+        android:label="@string/tableName"
+        tools:layout="@layout/fragment_table" />
+</navigation>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dp_15">
+
+    <ImageView
+        android:id="@+id/imgCoffee"
+        android:layout_width="@dimen/dp_70"
+        android:layout_height="@dimen/dp_70"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:src="@drawable/ic_coffee"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvProductName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvProductPrice"
+        app:layout_constraintStart_toEndOf="@id/imgCoffee"
+        app:layout_constraintTop_toTopOf="@id/imgCoffee" />
+
+    <TextView
+        android:id="@+id/tvProductPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textColor="#71778E"
+        android:textSize="@dimen/sp_16"
+        app:layout_constraintBottom_toTopOf="@id/imgBtnSub"
+        app:layout_constraintStart_toStartOf="@id/tvProductName"
+        app:layout_constraintTop_toBottomOf="@id/tvProductName" />
+
+    <ImageButton
+        android:id="@+id/imgBtnSub"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginStart="@dimen/dp_10"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/ic_outline_remove_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/imgCoffee"
+        app:layout_constraintStart_toEndOf="@id/imgCoffee"
+        app:layout_constraintTop_toBottomOf="@id/tvProductPrice"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvNumberProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/dp_8"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/imgBtnSub"
+        app:layout_constraintEnd_toStartOf="@id/imgBtnPlus"
+        app:layout_constraintStart_toEndOf="@+id/imgBtnSub"
+        app:layout_constraintTop_toTopOf="@+id/imgBtnSub" />
+
+    <ImageButton
+        android:id="@+id/imgBtnPlus"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:backgroundTint="@color/black"
+        android:src="@drawable/ic_round_add_circle_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNumberProduct"
+        app:layout_constraintStart_toEndOf="@+id/tvNumberProduct"
+        app:layout_constraintTop_toTopOf="@+id/tvNumberProduct"
+        tools:ignore="ContentDescription" />
+</androidx.constraintlayout.widget.ConstraintLayout>
