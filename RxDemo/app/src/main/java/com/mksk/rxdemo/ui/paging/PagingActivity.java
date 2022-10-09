@@ -3,14 +3,17 @@ package com.mksk.rxdemo.ui.paging;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.paging.LoadState;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.mksk.rxdemo.databinding.ActivityPaggingBinding;
+import com.mksk.rxdemo.ui.paging.adapter.DataLoadStateAdapter;
 import com.mksk.rxdemo.ui.paging.adapter.PagingAdapter;
 
 public class PagingActivity extends AppCompatActivity implements PagingContract.View {
 
     private ActivityPaggingBinding binding;
+    private PagingPresenter presenter;
     private PagingAdapter pagingAdapter;
 
     @Override
@@ -19,18 +22,24 @@ public class PagingActivity extends AppCompatActivity implements PagingContract.
         binding = ActivityPaggingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        PagingPresenter presenter = PagingPresenter.getInstance(this);
-//
-//        init();
-//
-//        presenter.datums.observe(this, datumPagingData -> pagingAdapter.submitData(getLifecycle(), datumPagingData));
+        presenter = PagingPresenter.getInstance(this);
+        presenter.pagingDatum();
+        init();
+
+        presenter.data.observe(this, datumPagingData -> pagingAdapter.submitData(getLifecycle(), datumPagingData));
 
     }
 
     private void init() {
-        pagingAdapter = PagingAdapter.init();
+        pagingAdapter = new PagingAdapter();
+        pagingAdapter.addLoadStateListener(loadStates -> {
+            binding.sf.setRefreshing(loadStates.getSource().getRefresh() instanceof LoadState.Loading);
+            return null;
+        });
 
-        binding.listSong.setAdapter(pagingAdapter);
+        binding.sf.setOnRefreshListener(() -> presenter.pagingDatum());
+
+        binding.listSong.setAdapter(pagingAdapter.withLoadStateFooter(new DataLoadStateAdapter(() -> pagingAdapter.retry())));
         binding.listSong.setLayoutManager(new LinearLayoutManager(this));
     }
 }

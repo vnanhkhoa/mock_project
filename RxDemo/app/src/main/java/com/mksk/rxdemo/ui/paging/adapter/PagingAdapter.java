@@ -12,56 +12,50 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.mksk.rxdemo.data.network.response.Datum;
 import com.mksk.rxdemo.databinding.ItemAilineBinding;
 
-import java.util.ArrayList;
-
 public class PagingAdapter extends PagingDataAdapter<Datum, PagingAdapter.ViewHolder> {
-    private final ArrayList<Datum> data;
 
-    public static PagingAdapter init() {
-        return new PagingAdapter(new DiffUtilDatum());
-    }
-
-    private PagingAdapter(@NonNull DiffUtil.ItemCallback<Datum> diffCallback) {
-        super(diffCallback);
-        data = new ArrayList<>();
+    public PagingAdapter(){
+        super(new DiffUtilDatum());
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return ViewHolder.from(parent);
-    }
-
-    @Override
-    public int getItemCount() {
-        return data.size();
+        return new ViewHolder(ItemAilineBinding.inflate(
+                LayoutInflater.from(parent.getContext()),
+                parent, false
+        ));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Datum datum = data.get(position);
-        holder.bind(datum);
+        Datum datum = getItem(position);
+
+        if (datum != null) {
+            holder.bind(datum);
+        }
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemAilineBinding binding;
 
-        public static ViewHolder from(ViewGroup parent) {
-            return new ViewHolder(ItemAilineBinding.inflate(
-                    LayoutInflater.from(parent.getContext()),
-                    parent, false
-            ));
-        }
+//        public static ViewHolder from(ViewGroup parent) {
+//            return
+//        }
 
-        private ViewHolder(@NonNull ItemAilineBinding binding) {
+        public ViewHolder(@NonNull ItemAilineBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
         public void bind(Datum datum) {
+            String id = String.valueOf(datum.getAirline().size());
+            if (!datum.getAirline().isEmpty()) {
+                id = String.valueOf(datum.getAirline().get(0).getName());
+            }
             binding.tvId.setText(datum.get_id());
-            binding.tvIDAirline.setText(datum.getAirline().get(0).getId());
+            binding.tvIDAirline.setText(id);
             binding.tvName.setText(datum.getName());
         }
     }

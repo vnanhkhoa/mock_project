@@ -20,6 +20,30 @@ public class AirlinePagingSource extends RxPagingSource<Integer, Datum> {
         this.mAppApi = mAppApi;
     }
 
+
+    @NonNull
+    @Override
+    public Single<LoadResult<Integer, Datum>> loadSingle(@NonNull LoadParams<Integer> params) {
+
+        int page = (params.getKey() == null) ? 0 : params.getKey();
+
+        return mAppApi.loadPage(page, 20)
+                .subscribeOn(Schedulers.io())
+                .map(response -> toLoadResult(response, page)).onErrorReturn(LoadResult.Error::new);
+    }
+
+    private LoadResult<Integer, Datum> toLoadResult(@NonNull Response response, Integer page) {
+        Integer prevKey =  (page == 0) ? null : page - 1;
+        Integer nextKey = (page == response.getTotalPages()) ? null : page + 1;
+
+        return new LoadResult.Page<>(
+                response.getData(),
+                prevKey,
+                nextKey,
+                LoadResult.Page.COUNT_UNDEFINED,
+                LoadResult.Page.COUNT_UNDEFINED);
+    }
+
     @Nullable
     @Override
     public Integer getRefreshKey(@NonNull PagingState<Integer, Datum> state) {
@@ -43,28 +67,5 @@ public class AirlinePagingSource extends RxPagingSource<Integer, Datum> {
             return nextKey - 1;
         }
         return null;
-    }
-
-    @NonNull
-    @Override
-    public Single<LoadResult<Integer, Datum>> loadSingle(@NonNull LoadParams<Integer> loadParams) {
-
-        int page = (loadParams.getKey() != null) ? loadParams.getKey() : 1;
-
-        return mAppApi.loadPage(page, 20)
-                .subscribeOn(Schedulers.io())
-                .map(response -> toLoadResult(response, page)).onErrorReturn(LoadResult.Error::new);
-    }
-
-    private LoadResult<Integer, Datum> toLoadResult(@NonNull Response response, Integer page) {
-        Integer prevKey = (page != null) ? page + 1 : null;
-        Integer nextKey = (page == response.getTotalPages()) ? null : page - 1;
-
-        return new LoadResult.Page<>(
-                response.getData(),
-                prevKey,
-                nextKey,
-                LoadResult.Page.COUNT_UNDEFINED,
-                LoadResult.Page.COUNT_UNDEFINED);
     }
 }

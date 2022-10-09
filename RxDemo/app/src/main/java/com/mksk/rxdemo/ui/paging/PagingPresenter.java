@@ -13,8 +13,8 @@ public class PagingPresenter extends BasePresenter implements PagingContract.Pre
 
     private static PagingPresenter INSTANCE;
     private final PagingContract.View mView;
-    private final MutableLiveData<PagingData<Datum>> _datums = new MutableLiveData<>();
-    public final LiveData<PagingData<Datum>> datums = _datums;
+    private final MutableLiveData<PagingData<Datum>> _data = new MutableLiveData<>();
+    public final LiveData<PagingData<Datum>> data = _data;
 
     public static PagingPresenter getInstance(PagingContract.View view) {
 
@@ -28,14 +28,13 @@ public class PagingPresenter extends BasePresenter implements PagingContract.Pre
 
     private PagingPresenter(PagingContract.View view) {
         mView = view;
-        pagingDatum();
     }
 
     public void pagingDatum() {
         addDisposable(repository
                 .pagingDatum()
                 .subscribeOn(Schedulers.io())
-                .subscribe(_datums::postValue));
+                .subscribe(_data::postValue));
     }
 
 }

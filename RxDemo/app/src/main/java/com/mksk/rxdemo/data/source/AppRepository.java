@@ -51,7 +51,7 @@ public class AppRepository extends Repository {
     @Override
     public Flowable<PagingData<Datum>> pagingDatum() {
         Pager<Integer, Datum> pager = new Pager<>(
-                new PagingConfig(20),
+                new PagingConfig(20,1,false),
                 () -> mAirlinePagingSource);
         return PagingRx.getFlowable(pager);
     }
