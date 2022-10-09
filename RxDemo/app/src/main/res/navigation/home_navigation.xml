@@ -19,6 +19,17 @@
         android:id="@+id/searchFragment"
         android:name="com.mksk.rxdemo.ui.main.home.search.SearchFragment"
         android:label="search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_full"
+            app:destination="@id/full" />
+    </fragment>
+
+
+    <dialog
+        android:id="@+id/full"
+        android:name="com.mksk.rxdemo.ui.main.home.full.FullFragment"
+        android:label="search"
+        tools:layout="@layout/fragment_full" />
 
 </navigation>

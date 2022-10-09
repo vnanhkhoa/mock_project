@@ -52,7 +52,6 @@ public class HomeFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this,new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Log.e("TAG", "handleOnBackPressed: "+ navController.getCurrentDestination().getDisplayName());
                 navController.popBackStack();
             }
         });
@@ -78,4 +77,9 @@ public class HomeFragment extends Fragment {
         NavigationUI.setupActionBarWithNavController(activity,navController);
 
     }
+
+    public void toolBarVisible(int visible) {
+        binding.toolbar.setVisibility(visible);
+    }
+
 }

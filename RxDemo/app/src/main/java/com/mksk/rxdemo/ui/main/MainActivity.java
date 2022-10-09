@@ -1,7 +1,12 @@
 package com.mksk.rxdemo.ui.main;
 
+import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
+import static android.view.View.SYSTEM_UI_FLAG_VISIBLE;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -103,11 +108,22 @@ public class MainActivity extends AppCompatActivity {
         int page = binding.viewPager2.getCurrentItem();
         if (page > 0) {
             binding.viewPager2.setCurrentItem(page - 1);
-        } else {
-            if (page == 0) {
-
-            }
-//            finish();
         }
+    }
+
+    public void visibleBottomNavigation(int visible) {
+        boolean inputUser = visible == View.VISIBLE;
+        binding.bottomNavigationView.setVisibility(visible);
+        binding.viewPager2.setUserInputEnabled(inputUser);
+    }
+
+    public void fullScreen() {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+    public void exitFullScreen() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_VISIBLE);
     }
 }
