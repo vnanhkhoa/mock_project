@@ -1,6 +1,7 @@
 package com.mksk.client.ui.main.menu
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,24 +18,24 @@ import com.mksk.client.ui.main.menu.adapter.MenuOrderAdapter
 import com.mksk.client.utils.callback.ItemClickOrderMenu
 
 class MenuOrderFragment(private val clickOrder: (order: List<ProductOrder>) -> Unit) :
-    BottomSheetDialogFragment() {
+    BottomSheetDialogFragment(),ItemClickOrderMenu {
     private lateinit var binding: FragmentMenuOrderBinding
     private val viewModel: MenuOrderViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val menuOrderAdapter by lazy { MenuOrderAdapter(itemClick) }
-    private lateinit var callBackCancel: () -> Unit
-    private val itemClick = object : ItemClickOrderMenu {
-        override fun addClick(idProduct: Int): Int {
-            return viewModel.handleAdd(idProduct)
-        }
+    private val menuOrderAdapter by lazy { MenuOrderAdapter(this) }
+    private var callBackCancel: (() -> Unit)? = null
 
-        override fun subClick(idProduct: Int): Int {
-            return viewModel.handleSud(idProduct)
-        }
+    override fun addClick(idProduct: Int): Int {
+        return viewModel.handleAdd(idProduct)
+    }
+
+    override fun subClick(idProduct: Int): Int {
+        return viewModel.handleSud(idProduct)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("MenuOrderFragment", "onCreate: ")
         mainViewModel.products.observe(requireActivity()) {
             viewModel.getListProduct(it)
         }
@@ -53,8 +54,17 @@ class MenuOrderFragment(private val clickOrder: (order: List<ProductOrder>) -> U
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.e("MenuOrderFragment", "onResume: ")
+        Log.e("MenuOrderFragment", "${viewModel.productOrder.value}")
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Log.e("MenuOrderFragment", "onViewCreated: ")
+
         binding.apply {
             recycleViewMenu.apply {
                 addItemDecoration(
@@ -91,6 +101,29 @@ class MenuOrderFragment(private val clickOrder: (order: List<ProductOrder>) -> U
 
     override fun onDetach() {
         super.onDetach()
-        callBackCancel()
+        callBackCancel?.let { it() }
+        callBackCancel = null
+        Log.e("MenuOrderFragment", "onDetach: ")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.e("MenuOrderFragment", "onSaveInstanceState: ")
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        Log.e("MenuOrderFragment", "onViewStateRestored: ")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e("MenuOrderFragment", "onDestroyView: ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Log.e("MenuOrderFragment", "onDestroy: ")
     }
 }

@@ -39,4 +39,9 @@ class MenuOrderViewModel(application: Application) : AndroidViewModel(applicatio
         productOrder.value?.get(idProduct)!!.productAmount -= 1
         return productOrder.value?.get(idProduct)!!.productAmount
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.e("MenuOrderViewModel", "onCleared: ")
+    }
 }

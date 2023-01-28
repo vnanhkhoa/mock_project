@@ -85,7 +85,7 @@ public class SearchFragment extends Fragment {
             Uri uri = Uri.parse("https://cucumber.fsoft.com.vn/wp-content/uploads/sites/14/2022/06/Fsoft_Cuba_4_minimal.mp4");
             binding.video.setVideoURI(uri);
             binding.video.setOnPreparedListener(mediaPlayer -> {
-                mediaPlayer.start();
+                mediaController.show();
                 mediaController.requestFocus();
                 binding.loading.setVisibility(GONE);
             });

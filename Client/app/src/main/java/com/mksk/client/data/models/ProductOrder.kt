@@ -2,7 +2,7 @@ package com.mksk.client.data.models
 
 import android.os.Parcelable
 import com.mksk.server.data.models.RevenueDetail
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ProductOrder(
