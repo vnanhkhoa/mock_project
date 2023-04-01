@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,16 +22,16 @@
 
     <ImageButton
         android:id="@+id/imgBtnClose"
-        android:src="@drawable/ic_round_close_24"
         android:layout_width="?attr/actionBarSize"
         android:layout_height="0dp"
-        android:scaleType="fitCenter"
-        android:padding="@dimen/dp_10"
         android:adjustViewBounds="true"
         android:background="@android:color/transparent"
+        android:padding="@dimen/dp_10"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_round_close_24"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"/>
+        app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <View
         android:id="@+id/view"
@@ -46,10 +47,10 @@
         android:layout_width="0dp"
         android:layout_height="500dp"
         android:nestedScrollingEnabled="true"
-        app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintBottom_toTopOf="@+id/btnOrder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <Button
         android:id="@+id/btnOrder"
@@ -64,4 +65,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recycleViewMenu"
         app:layout_constraintStart_toStartOf="@+id/recycleViewMenu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
